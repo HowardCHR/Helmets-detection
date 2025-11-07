@@ -17,12 +17,18 @@ def detect_helmets(
         conf (float): 置信度阈值
     """
     # 自动检测设备（优先 MPS，再 CPU）
-    if torch.backends.mps.is_available():
-        device = "mps"
-        print("⚙️ 使用 Apple MPS 加速推理！")
+    # if torch.backends.mps.is_available():
+    #     device = "mps"
+    #     print("⚙️ 使用 Apple MPS 加速推理！")
+    # else:
+    #     device = "cpu"
+    #     print("⚙️ 未检测到 MPS，使用 CPU 模式。")
+    if torch.cuda.is_available():
+        device = "cuda"
+        print("⚙️ 使用 CUDA 加速推理！")
     else:
         device = "cpu"
-        print("⚙️ 未检测到 MPS，使用 CPU 模式。")
+        print("⚙️ 未检测到 CUDA，使用 CPU 模式。")
 
     # 确保保存目录存在
     os.makedirs(save_dir, exist_ok=True)

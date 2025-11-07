@@ -1,6 +1,6 @@
 import os
 
-label_dir = 'data/test/labels'
+label_dir = 'data/valid/labels'
 keep_class = 0
 
 for root, dirs, files in os.walk(label_dir):
